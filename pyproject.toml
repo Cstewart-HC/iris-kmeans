@@ -1,0 +1,10 @@
+[tool.black]
+line-length = 80
+skip-string-normalization = true
+
+[tool.isort]
+profile = "black"
+line_length = 80
+
+# Optional: tooling guidance. Install these tools for checks mentioned in BEST_PRACTICES.md
+# flake8, black, isort, radon (or lizard), pylint

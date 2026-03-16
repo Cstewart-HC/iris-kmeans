@@ -1,0 +1,7 @@
+[flake8]
+max-line-length = 80
+extend-ignore = E203, W503
+# McCabe cyclomatic complexity (if flake8-mccabe installed)
+max-complexity = 10
+# Cognitive complexity (requires flake8-cognitive-complexity plugin)
+max-cognitive-complexity = 7
