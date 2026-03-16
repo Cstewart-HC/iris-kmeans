@@ -20,6 +20,8 @@ Additional files added for project standards and quality checks:
 - `.flake8`: Flake8 configuration (80-char limit and complexity hints).
 - `pyproject.toml`: Black and isort configuration for 80-char formatting.
 - `scripts/quality_check.sh`: Convenience script to run linters and complexity checks.
+- `scripts/quality_check.ps1`: PowerShell wrapper to run the same checks on Windows.
+- `requirements-dev.txt`: Development dependencies for formatting, linting, complexity and testing tools.
 
 Suggested next tasks:
 - Add an exploratory notebook in `notebooks/` that imports the Iris dataset.

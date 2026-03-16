@@ -1,0 +1,10 @@
+black
+isort
+flake8
+flake8-cognitive-complexity
+mccabe
+radon
+lizard
+pre-commit
+pytest
+pytest-cov
