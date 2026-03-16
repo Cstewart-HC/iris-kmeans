@@ -37,10 +37,12 @@ function Invoke-QualityTool {
     }
 }
 
-Invoke-QualityTool -Name "flake8" -Command "flake8" -Args @(".")
+Invoke-QualityTool -Name "flake8" -Command "flake8" `
+    -Args @("src", "tests", "scripts")
 Invoke-QualityTool -Name "isort" -Command "isort" `
-    -Args @("--check-only", "--diff", ".")
-Invoke-QualityTool -Name "black" -Command "black" -Args @("--check", ".")
+    -Args @("--check-only", "--diff", "src", "tests", "scripts")
+Invoke-QualityTool -Name "black" -Command "black" `
+    -Args @("--check", "src", "tests", "scripts")
 
 Write-Host "`n== complexity (radon / lizard) =="
 if (Get-Command radon -ErrorAction SilentlyContinue) {
