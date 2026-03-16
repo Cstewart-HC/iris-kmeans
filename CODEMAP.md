@@ -25,6 +25,7 @@ Additional files added for project standards and quality checks:
 - `.github/workflows/quality.yml`: CI workflow running lint, format, complexity and test checks.
 
 Suggested next tasks:
+
 - Add an exploratory notebook in `notebooks/` that imports the Iris dataset.
 - Implement a simple clustering script in `src/` and add a runnable entrypoint.
 - Add or expand test coverage in `tests/` as analysis modules are added.

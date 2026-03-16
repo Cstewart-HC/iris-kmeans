@@ -1,4 +1,5 @@
 # IRIS Clustering
+
 From UCI
 
 This is perhaps the best known database to be found in the pattern recognition literature. Fisher's paper is a classic in the field and is referenced frequently to this day. (See Duda & Hart, for example.) The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are NOT linearly separable from each other.
@@ -13,13 +14,14 @@ Attribute Information:
 4. petal width in cm
 5. class:
 
-0 -- Iris Setosa 
+0 -- Iris Setosa
 
-1 -- Iris Versicolour 
+1 -- Iris Versicolour
 
 2 -- Iris Virginica
 
 ## Challenge
+
 Import the Iris dataset and explore the data for structure without using the species (target) column.
 
 ## Development
@@ -35,7 +37,7 @@ Setup (recommended):
 pip install -r requirements.txt
 ```
 
-3. Install development dependencies:
+1. Install development dependencies:
 
 ```powershell
 pip install -r requirements-dev.txt
@@ -70,4 +72,3 @@ pytest
 ```
 
 See `BEST_PRACTICES.md` for coding standards and complexity targets.
-
