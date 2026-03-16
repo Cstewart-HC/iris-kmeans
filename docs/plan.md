@@ -1,5 +1,7 @@
 ## Plan: Bootstrap Iris KMeans Project
 
+Last updated: 2026-03-16
+
 Create the missing project scaffolding and a first exploration notebook that loads Iris via scikit-learn, performs unsupervised clustering (no target leakage), and reports both unsupervised metrics and clearly-post-hoc target-based metrics.
 
 **Steps**
