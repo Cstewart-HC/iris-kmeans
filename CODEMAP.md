@@ -22,8 +22,9 @@ Additional files added for project standards and quality checks:
 - `scripts/quality_check.sh`: Convenience script to run linters and complexity checks.
 - `scripts/quality_check.ps1`: PowerShell wrapper to run the same checks on Windows.
 - `requirements-dev.txt`: Development dependencies for formatting, linting, complexity and testing tools.
+- `.github/workflows/quality.yml`: CI workflow running lint, format, complexity and test checks.
 
 Suggested next tasks:
 - Add an exploratory notebook in `notebooks/` that imports the Iris dataset.
 - Implement a simple clustering script in `src/` and add a runnable entrypoint.
-- Add CI configuration to run tests and linting.
+- Add or expand test coverage in `tests/` as analysis modules are added.

@@ -1,0 +1,47 @@
+name: quality
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name: Run formatting and lint checks
+        run: |
+          isort --check-only --diff .
+          black --check .
+          flake8 .
+
+      - name: Run complexity check
+        run: |
+          radon cc -s -a src
+
+      - name: Run tests
+        shell: bash
+        run: |
+          pytest -q
+          status=$?
+          if [ "$status" -eq 5 ]; then
+            echo "No tests collected; treating as pass for now."
+            exit 0
+          fi
+          exit "$status"

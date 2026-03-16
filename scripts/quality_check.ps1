@@ -1,38 +1,46 @@
 #!/usr/bin/env pwsh
+
 Write-Host "Running project quality checks"
 
 $results = @()
 
-function Run-Tool {
+function Invoke-QualityTool {
     param(
         [string]$Name,
-        [string]$Cmd,
+        [string]$Command,
         [string[]]$Args
     )
 
     Write-Host "`n== $Name =="
-    if (Get-Command $Cmd -ErrorAction SilentlyContinue) {
-        & $Cmd @Args
-        $exit = $LASTEXITCODE
-        $results += @{tool=$Name; exit=$exit}
-        if ($exit -ne 0) { Write-Host "$Name returned exit code $exit" }
+
+    if (Get-Command $Command -ErrorAction SilentlyContinue) {
+        & $Command @Args
+        $exitCode = $LASTEXITCODE
     }
     elseif (Get-Command python -ErrorAction SilentlyContinue) {
-        Write-Host "Running via python -m $Cmd"
-        & python -m $Cmd @Args
-        $exit = $LASTEXITCODE
-        $results += @{tool=$Name; exit=$exit}
-        if ($exit -ne 0) { Write-Host "$Name returned exit code $exit" }
+        Write-Host "Running via python -m $Command"
+        & python -m $Command @Args
+        $exitCode = $LASTEXITCODE
     }
     else {
-        Write-Host "$Name not found — skipping"
-        $results += @{tool=$Name; exit=-1}
+        Write-Host "$Name not found - skipping"
+        $exitCode = -1
+    }
+
+    if ($exitCode -gt 0) {
+        Write-Host "$Name returned exit code $exitCode"
+    }
+
+    $script:results += [pscustomobject]@{
+        Tool = $Name
+        Exit = $exitCode
     }
 }
 
-Run-Tool -Name 'flake8' -Cmd 'flake8' -Args '.'
-Run-Tool -Name 'isort' -Cmd 'isort' -Args @('--check-only','--diff','.')
-Run-Tool -Name 'black' -Cmd 'black' -Args @('--check','.')
+Invoke-QualityTool -Name "flake8" -Command "flake8" -Args @(".")
+Invoke-QualityTool -Name "isort" -Command "isort" `
+    -Args @("--check-only", "--diff", ".")
+Invoke-QualityTool -Name "black" -Command "black" -Args @("--check", ".")
 
 Write-Host "`n== complexity (radon / lizard) =="
 if (Get-Command radon -ErrorAction SilentlyContinue) {
@@ -42,13 +50,22 @@ elseif (Get-Command lizard -ErrorAction SilentlyContinue) {
     lizard -C src
 }
 else {
-    Write-Host "radon/lizard not installed — skipping complexity check"
+    Write-Host "radon/lizard not installed - skipping complexity check"
 }
 
 Write-Host "`nSummary:"
-$results | ForEach-Object {
-    $status = if ($_.exit -eq 0) { 'OK' } elseif ($_.exit -eq -1) { 'MISSING' } else { "WARN($($_.exit))" }
-    Write-Host " - $($_.tool): $status"
+foreach ($result in $results) {
+    if ($result.Exit -eq 0) {
+        $status = "OK"
+    }
+    elseif ($result.Exit -eq -1) {
+        $status = "MISSING"
+    }
+    else {
+        $status = "WARN($($result.Exit))"
+    }
+
+    Write-Host " - $($result.Tool): $status"
 }
 
 Write-Host "`nQuality checks complete."
