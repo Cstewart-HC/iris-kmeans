@@ -21,3 +21,53 @@ Attribute Information:
 
 ## Challenge
 Import the Iris dataset and explore the data for structure without using the species (target) column.
+
+## Development
+
+This repository includes optional development tooling to help keep code style and complexity within project standards. See `BEST_PRACTICES.md` for more detail.
+
+Setup (recommended):
+
+1. Create and activate a virtual environment.
+2. Install runtime dependencies:
+
+```powershell
+pip install -r requirements.txt
+```
+
+3. Install development dependencies:
+
+```powershell
+pip install -r requirements-dev.txt
+```
+
+Run quality checks:
+
+- On Windows PowerShell:
+
+```powershell
+./scripts/quality_check.ps1
+```
+
+- On macOS / Linux:
+
+```bash
+./scripts/quality_check.sh
+```
+
+Formatting and linting (individual commands):
+
+```bash
+isort .
+black .
+flake8 .
+```
+
+Running tests:
+
+```bash
+pytest
+```
+
+See `BEST_PRACTICES.md` for coding standards and complexity targets.
+
