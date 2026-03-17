@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Structure</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        h1 { border-bottom: 2px solid #3498db; padding-bottom: 0.3em; }
+        code {
+            background-color: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+        ul, ol { padding-left: 2em; }
+        li { margin: 0.3em 0; }
+        hr { border: none; border-top: 1px solid #ddd; margin: 2em 0; }
+        .nav {
+            background-color: #3498db;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+        .nav a {
+            color: white;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="plan.html">Plan</a>
+        <a href="student-handout.html">Student Guide</a>
+        <a href="best-practices.html">Best Practices</a>
+        <a href="codemap.html">Code Map</a>
+        <a href="structure.html">Structure</a>
+    </nav>
+    <h1>Project Structure</h1>
+<p>Top-level layout (intended):</p>
+<ul>
+<li>README.md — project overview</li>
+<li>CODEMAP.md — mapping of files and purposes</li>
+<li>STRUCTURE.md — this file</li>
+<li>copilot-instructions.md — contributor/assistant guidance</li>
+<li>requirements.txt — python dependencies</li>
+<li>.gitignore</li>
+<li>data/</li>
+<li>raw/ — original dataset files (CSV, ZIP)</li>
+<li>processed/ — cleaned/feature-engineered data</li>
+<li>notebooks/</li>
+<li>01-explore-iris.ipynb — exploratory analysis (starter)</li>
+<li>src/</li>
+<li><strong>init</strong>.py</li>
+<li>analysis/ — modules for clustering and evaluation</li>
+<li>utils/ — data loading and helper functions</li>
+<li>tests/ — unit tests</li>
+</ul>
+<p>Notes:
+- Place raw downloads in <code>data/raw/</code> and keep processed artifacts in <code>data/processed/</code>.
+- Use notebooks for exploration; production code should live in <code>src/</code>.</p>
+</body>
+</html>

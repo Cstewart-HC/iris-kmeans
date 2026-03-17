@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Means K Selection Guide</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        h1 { border-bottom: 2px solid #3498db; padding-bottom: 0.3em; }
+        code {
+            background-color: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+        ul, ol { padding-left: 2em; }
+        li { margin: 0.3em 0; }
+        hr { border: none; border-top: 1px solid #ddd; margin: 2em 0; }
+        .nav {
+            background-color: #3498db;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+        .nav a {
+            color: white;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="plan.html">Plan</a>
+        <a href="student-handout.html">Student Guide</a>
+        <a href="best-practices.html">Best Practices</a>
+        <a href="codemap.html">Code Map</a>
+        <a href="structure.html">Structure</a>
+    </nav>
+    <h1>K-Means K Selection on Iris: Student Handout</h1>
+<h2>What You Should Learn</h2>
+<p>By the end of this lesson, you should be able to:
+1. Explain why choosing K in K-means is model selection, not a fixed rule.
+2. Interpret multiple unsupervised metrics for K selection.
+3. Explain why different metrics can suggest different K values.
+4. Defend a final K with transparent evidence.</p>
+<h2>Big Idea</h2>
+<p>There is no universally correct K.
+A strong workflow compares multiple unsupervised signals and documents the choice.</p>
+<p>On Iris, two outcomes can both be reasonable:
+- silhouette-only can suggest K=2
+- multi-metric consensus can suggest K=3</p>
+<h2>Metrics You Need to Know</h2>
+<h3>1) Inertia (Elbow)</h3>
+<ul>
+<li>Measures within-cluster squared distance.</li>
+<li>Lower is better.</li>
+<li>Since inertia always decreases as K increases, use elbow shape, not minimum value.</li>
+</ul>
+<h3>2) Silhouette</h3>
+<ul>
+<li>Measures cohesion and separation.</li>
+<li>Higher is better.</li>
+<li>Can prefer coarse splits such as one-vs-rest structure.</li>
+</ul>
+<h3>3) Calinski-Harabasz</h3>
+<ul>
+<li>Ratio of between-cluster to within-cluster dispersion.</li>
+<li>Higher is better.</li>
+</ul>
+<h3>4) Davies-Bouldin</h3>
+<ul>
+<li>Similarity of each cluster with the most similar other cluster.</li>
+<li>Lower is better.</li>
+</ul>
+<h3>5) Cluster-Balance Entropy</h3>
+<ul>
+<li>Measures whether cluster sizes are balanced.</li>
+<li>Higher is better.</li>
+<li>Helps avoid trivial lopsided splits.</li>
+</ul>
+<h3>6) Seed Stability (diagnostic)</h3>
+<ul>
+<li>Measures sensitivity to random initialization.</li>
+<li>Lower standard deviation is better.</li>
+<li>Used as evidence, not as the only decision rule.</li>
+</ul>
+<h2>Decision Policy Used in Class</h2>
+<ol>
+<li>Evaluate K from 2 to 8.</li>
+<li>Keep silhouette-only best K as baseline.</li>
+<li>Rank each metric with proper direction.</li>
+<li>Sum metric ranks.</li>
+<li>Take the K values with best rank sum.</li>
+<li>Use elbow as tie-break when possible.</li>
+<li>Report both baseline K and final consensus K.</li>
+</ol>
+<h2>Why This Matters</h2>
+<p>A single metric can miss structure.
+A multi-metric decision is usually more robust and easier to defend.</p>
+<h2>Common Mistakes</h2>
+<ol>
+<li>Treating one metric as absolute truth.</li>
+<li>Using wrong metric direction (higher vs lower).</li>
+<li>Hiding baseline results after using advanced methods.</li>
+<li>Using label-based metrics to choose K during unsupervised training.</li>
+</ol>
+<h2>Reflection Questions</h2>
+<ol>
+<li>Why might silhouette prefer K=2 on Iris?</li>
+<li>Which metric in class most strongly supported K=3?</li>
+<li>If metrics disagree, what tie-break rule is most defensible?</li>
+<li>How would your policy change for imbalanced real-world data?</li>
+</ol>
+<h2>Exit Ticket Prompt</h2>
+<p>Using only unsupervised evidence, justify your chosen K for Iris in 5 to 8 sentences.
+Include:
+- at least three metrics
+- one caveat
+- one tie-break rationale</p>
+</body>
+</html>

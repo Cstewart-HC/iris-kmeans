@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iris Clustering</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        h1 { border-bottom: 2px solid #3498db; padding-bottom: 0.3em; }
+        code {
+            background-color: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+        ul, ol { padding-left: 2em; }
+        li { margin: 0.3em 0; }
+        hr { border: none; border-top: 1px solid #ddd; margin: 2em 0; }
+        .nav {
+            background-color: #3498db;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+        .nav a {
+            color: white;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="plan.html">Plan</a>
+        <a href="student-handout.html">Student Guide</a>
+        <a href="best-practices.html">Best Practices</a>
+        <a href="codemap.html">Code Map</a>
+        <a href="structure.html">Structure</a>
+    </nav>
+    <h1>IRIS Clustering</h1>
+<p>From UCI</p>
+<p>This is perhaps the best known database to be found in the pattern recognition literature. Fisher's paper is a classic in the field and is referenced frequently to this day. (See Duda &amp; Hart, for example.) The data set contains 3 classes of 50 instances each, where each class refers to a type of iris plant. One class is linearly separable from the other 2; the latter are NOT linearly separable from each other.</p>
+<p>Predicted attribute: class of iris plant.</p>
+<p>Attribute Information:</p>
+<ol>
+<li>sepal length in cm</li>
+<li>sepal width in cm</li>
+<li>petal length in cm</li>
+<li>petal width in cm</li>
+<li>class:</li>
+</ol>
+<p>0 -- Iris Setosa</p>
+<p>1 -- Iris Versicolour</p>
+<p>2 -- Iris Virginica</p>
+<h2>Challenge</h2>
+<p>Import the Iris dataset and explore the data for structure without using the species (target) column.</p>
+<h2>Development</h2>
+<p>This repository includes optional development tooling to help keep code style and complexity within project standards. See <code>BEST_PRACTICES.md</code> for more detail.</p>
+<p>Setup (recommended):</p>
+<ol>
+<li>Create and activate a virtual environment.</li>
+<li>Install runtime dependencies:</li>
+</ol>
+<pre><code class="language-powershell">pip install -r requirements.txt
+</code></pre>
+<ol>
+<li>Install development dependencies:</li>
+</ol>
+<pre><code class="language-powershell">pip install -r requirements-dev.txt
+</code></pre>
+<p>Run quality checks:</p>
+<ul>
+<li>On Windows PowerShell:</li>
+</ul>
+<pre><code class="language-powershell">./scripts/quality_check.ps1
+</code></pre>
+<ul>
+<li>On macOS / Linux:</li>
+</ul>
+<pre><code class="language-bash">./scripts/quality_check.sh
+</code></pre>
+<p>Formatting and linting (individual commands):</p>
+<pre><code class="language-bash">isort .
+black .
+flake8 .
+</code></pre>
+<p>Running tests:</p>
+<pre><code class="language-bash">pytest
+</code></pre>
+<p>See <code>BEST_PRACTICES.md</code> for coding standards and complexity targets.</p>
+</body>
+</html>

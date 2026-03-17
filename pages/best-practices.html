@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Practices</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        h1 { border-bottom: 2px solid #3498db; padding-bottom: 0.3em; }
+        code {
+            background-color: #f4f4f4;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.5em 1em;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 1em 0;
+            padding-left: 1em;
+            color: #666;
+        }
+        ul, ol { padding-left: 2em; }
+        li { margin: 0.3em 0; }
+        hr { border: none; border-top: 1px solid #ddd; margin: 2em 0; }
+        .nav {
+            background-color: #3498db;
+            padding: 1rem;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+        .nav a {
+            color: white;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="plan.html">Plan</a>
+        <a href="student-handout.html">Student Guide</a>
+        <a href="best-practices.html">Best Practices</a>
+        <a href="codemap.html">Code Map</a>
+        <a href="structure.html">Structure</a>
+    </nav>
+    <h1>Python Best Practices — tailored for IRIS Clustering project</h1>
+<p>This repository is a small analysis project (see <code>README.md</code>) focused on exploring the Iris dataset. The following recommended standards are intentionally simple and tool-agnostic so they work across environments.</p>
+<p>Standards applied here</p>
+<ul>
+<li>PEP 8 style for Python formatting.</li>
+<li>Maximum line length: 80 characters for function bodies and module-level code.</li>
+<li>Cognitive complexity: aim for &lt;= 7 per function. Prefactor by refactoring large functions into smaller helpers.</li>
+</ul>
+<p>Quick guidance</p>
+<ul>
+<li>Keep functions short and focused: single responsibility makes testing and reasoning easier.</li>
+<li>Add concise docstrings to public functions and modules using the one-line summary + optional details format.</li>
+<li>Use explicit imports and avoid wildcard imports.</li>
+<li>Prefer typed function signatures (type hints) for public APIs and non-trivial helpers.</li>
+<li>Prefer pure functions where reasonable; isolate side-effects (I/O, plotting) behind small adapter functions.</li>
+<li>Add unit tests for key data transformations and clustering behavior.</li>
+</ul>
+<p>Tools and how to run checks</p>
+<ul>
+<li>Formatting: <code>black .</code> (configured to 80 chars in <code>pyproject.toml</code>).</li>
+<li>Import sorting: <code>isort .</code> (profile "black" set in <code>pyproject.toml</code>).</li>
+<li>Linting: <code>flake8 .</code> (configuration in <code>.flake8</code> — includes complexity thresholds if plugins installed).</li>
+<li>Cognitive complexity: use <code>radon</code> or <code>lizard</code> to inspect function complexity. Example:</li>
+</ul>
+<pre><code>pip install radon
+radon cc -s -a src
+</code></pre>
+<p><code>radon cc</code> reports cyclomatic complexity; for cognitive complexity you can use <code>lizard</code> or the <code>radon</code> cognitive-complexity plugin if available. Aim to refactor functions with reported complexity above 7.</p>
+<p>Suggested workflow</p>
+<ol>
+<li>Run <code>scripts/quality_check.sh</code> (or run tools individually) before committing.</li>
+<li>Fix formatting errors via <code>black</code> and <code>isort</code>.</li>
+<li>Address flake8 and complexity warnings next (refactor large functions into smaller ones).</li>
+</ol>
+<p>Notes</p>
+<ul>
+<li>These files provide guidance and automation helpers but do not enforce installations. Add CI or pre-commit hooks later to automate checks.</li>
+</ul>
+</body>
+</html>
